@@ -1,0 +1,760 @@
+/* Professional & Clean */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+/* Elegant */
+@import url('https://fonts.googleapis.com/css2?family=Neuton:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+/* Pairing Options */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+/* ---------------- Base styles ---------------- */
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  color: black;
+}
+
+.buttons {
+  gap: 10px;
+}
+
+
+/* Links reset */
+a:not(.logout-button):not(.active-link),
+a:not(.logout-button):not(.active-link):visited,
+a:not(.logout-button):not(.active-link):hover,
+a:not(.logout-button):not(.active-link):active {
+  text-decoration: none;
+  color: inherit;
+}
+
+a, a:visited, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------------- Dashboard layout ---------------- */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  width: 213vh;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+/* Top 5 cards row */
+.top-cards {
+  grid-column: 1 / span 4;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* Make top row stat cards smaller like screenshot */
+.dashboard-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+  flex-direction: column;
+}
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+.card-title {
+  text-align: left;
+  font-size: 14px;
+  color: #666;
+}
+.card-value {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+/* Icon (small, top-right like badge) */
+.card-icon {
+  font-size: 1.25rem;
+  color: #88d5ea;
+  float: left;
+}
+
+.raw-materials {
+  grid-column: 1 / span 3;
+}
+/* Most Selling Products (right side) */
+.most-selling {
+  grid-column: 4;
+}
+
+/* Finished Goods (bottom left) */
+.finished-goods {
+  grid-column: 1 / span 2;
+}
+
+/* Purchase Order Status (bottom right) */
+.po-status {
+  grid-column: 3 / span 2;
+}
+
+
+/* Background colors for small summary cards */
+.card-product  { background-color: #eaeaea; }   /* light pink */
+.card-rtv      { background-color: #fff2cc; }   /* light yellow */
+.card-disposal { background-color: #e6fff5; }   /* light green */
+.card-purchase { background-color: #e6e6ff; }   /* light blue */
+
+/* Grid positioning for larger chart cards */
+/* Position large chart cards below (span full width now that top has 5) */
+.card-po {
+  grid-column: 3 / span 2;
+  grid-row: span 1;
+  min-height: 300px;
+}
+
+.card-fg {
+  grid-column: 1 / span 2;
+  grid-row: span 1;
+  min-height: 300px;
+}
+
+
+.card-rm {
+  grid-column: 1 / span 2;   /* wider */
+  grid-row: span 1;          /* taller */
+  min-height: 300px;         /* adjust height */
+}
+/* Make charts expand inside large cards */
+.card-po canvas,
+.card-fg canvas,
+.card-rm canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Big Cards (Charts, Sections, Summary) */
+.section-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  min-height: 320px;   /* default height */
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Sub-box list style (like Most Selling Products) */
+.sales-sub-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sales-sub-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.sales-sub-item:last-child {
+  border-bottom: none;
+}
+
+.sales-sub-item .label {
+  font-weight: 600;
+  color: #333;
+}
+
+.sales-sub-item .value {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Make charts expand nicely inside big cards */
+.section-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.profile-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+option:hover{
+  cursor: pointer;
+}
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 194px;
+  background-color: white;
+  color: white;
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  box-shadow:
+    4px 0 6px rgba(0, 0, 0, 0.1),
+    8px 0 12px rgba(0, 0, 0, 0.08),
+    inset -2px 0 4px rgba(0, 0, 0, 0.04);
+  border-right: 1px solid #ddd;
+}
+
+.sidebar.scrollable {
+  overflow-y: auto;
+}
+
+.sidebar .login-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 1rem 0;
+}
+
+/* Nav Links */
+.sidebar .nav-link {
+  color: rgb(53, 53, 53) !important;
+  font-weight: 600;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #f0f8ff;
+  color: #008BB0 !important;
+  transform: translateX(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar .active-link {
+  background-color: #7bcce2;
+  color: black !important;
+  font-weight: 700;
+  box-shadow: inset 2px 0 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Sidebar collapsed style */
+.sidebar.collapsed {
+  width: 60px;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed .nav-link {
+  font-size: 0;
+  padding-left: 0;
+}
+
+.sidebar.collapsed .nav-link::before {
+  content: "•";
+  font-size: 18px;
+  margin-left: 10px;
+  color: #444;
+}
+
+/* Adjust main content when sidebar is collapsed */
+.dashboard-container.sidebar-collapsed .main-content {
+  margin-left: 60px;
+  transition: margin-left 0.3s ease;
+}
+
+/* ---------------- Main content ---------------- */
+.main-content {
+  margin-left: 200px;
+  margin-top: 80px;   /* ✅ push content down so it doesn't hide under topbar */
+  flex-grow: 1;
+  background-color: white;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+}
+
+/* ---------------- Topbar cards ---------------- */
+/* ---------------- Topbar ---------------- */
+/* ---------------- Topbar ---------------- */
+.topbar {
+  width: calc(100% - 180px); /* account for sidebar width */
+  height: 65px;
+  background-color: #88d5ea; /* Blue */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: black;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: fixed;       /* ✅ make it fixed */
+  top: 0;                /* stick to top */
+  left: 193.5px;           /* offset for sidebar */
+  z-index: 100;         /* stay above content */
+}
+
+.topbar-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Profile Circle */
+.profile-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+/* Profile Info */
+.profile-text {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.fullname {
+  font-size: 20px;
+}
+
+.employee {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-top: 5px;
+}
+
+@keyframes countUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.topbar-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Table container */
+.topbar-inventory-box {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+/* Custom table */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Neuton', serif;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Table header */
+.custom-table thead {
+  background: #f8f9fa;
+}
+
+.custom-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: bolder;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Table rows */
+.custom-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.custom-table tbody tr:hover {
+  background: #f1f9ff;
+}
+
+/* Actions inside table */
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Quantity input */
+.qty-input {
+  width: 80px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Add button */
+.btn-add {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-deduct{
+  background: #cf2727;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-add:hover {
+  background: #218838;
+}
+
+
+/* ---------------- Legend dots ---------------- */
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.red { background-color: #e74c3c; }
+.dot.yellow { background-color: #f1c40f; }
+.dot.green { background-color: #2ecc71; }
+
+.topbar-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.topbar-legend div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.topbar-placeholder {
+  color: gray;
+  font-style: italic;
+}
+
+.highlight-red {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* ---------------- Forms & selects ---------------- */
+.topbar-select, .custom-select, .profile-select{
+  width: 100%;
+  max-width: 180px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  margin-left: 5px;
+  font-size: medium;
+}
+
+.topbar-select:hover, .custom-select:hover, .profile-select:hover{
+  border-color: #5b72b5;
+}
+
+.topbar-select option, .custom-select option, .profile-select option {
+  font-weight: normal;
+  color: #333;
+}
+
+/* ---------------- Input groups ---------------- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 5px;
+}
+
+.input-group label {
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ---------------- Modal ---------------- */
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 100vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: scale(0.9);
+  opacity: 0;
+  animation: modalFadeIn 0.25s forwards;
+}
+
+@keyframes modalFadeIn {
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.action-button, .cancel-button {
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.action-button { background-color: #007bff; color: white; }
+.cancel-button { background-color: #6c757d; color: white; }
+
+.action-button:hover { background-color: #0056b3; }
+.cancel-button:hover { background-color: #5a6268; }
+
+/* ---------------- Success message ---------------- */
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* ---------------- Sales box ---------------- */
+.sales-sub-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.sales-sub-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.sales-sub-item .label {
+  font-weight: 600;
+}
+
+/* ---------------- Table hover ---------------- */
+.table-row {
+  transition: background-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.table-row:hover {
+  background-color: #e6f3ff;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------------- Progress bars ---------------- */
+.progress-bar-container {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 12px;
+}
+.progress-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+.progress-pending { background-color: #f1c40f; }
+.progress-processing { background-color: #3498db; }
+.progress-completed { background-color: #2ecc71; }
+
+/* ---------------- Sidebar toggle button ---------------- */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 15px;
+  left: 210px;
+  z-index: 1100;
+  background-color: #008BB0;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 6px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: left 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: #006d91;
+  transform: scale(1.05);
+}
+
+/* ---------------- Dynamic order status ---------------- */
+.status-pending { color: #f1c40f; font-weight: bold; }
+.status-processing { color: #3498db; font-weight: bold; }
+.status-completed { color: #2ecc71; font-weight: bold; }
+
+/* ---------------- Sidebar tooltips ---------------- */
+.sidebar .nav-link[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 60px;
+  background: #008BB0;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  opacity: 0.95;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* dim background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* above table & other elements */
+}
+
+.modal-content {
+  width: 200px;          /* shrink width */
+  max-width: 100%;        /* responsive */
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;         /* less padding */
+  animation: fadeInScale 0.3s ease-in-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
